@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RESTfulEngine.h"
+#define  AppDelegate ((DouFmAppDelegate *)[UIApplication sharedApplication].delegate)
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+
+@interface DouFmAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) RESTfulEngine *engine;
 
 @end
