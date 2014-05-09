@@ -23,13 +23,13 @@
 {
     [super viewDidLoad];
     
-//    [AppDelegate.engine fetchPlayListOnSucceded:^(NSMutableArray *listOfModelBaseObjects) {
-//                DLog(@"fetch items %@", listOfModelBaseObjects);
-//        self.playList = [listOfModelBaseObjects copy];
-//        [self.tableView reloadData];
-//            } onError:^(NSError *engineError) {
-//                DLog(@"error %@",engineError);
-//            }];
+    [AppDelegate.engine fetchPlayListOnSucceded:^(NSMutableArray *listOfModelBaseObjects) {
+                DLog(@"fetch items %@", listOfModelBaseObjects);
+        self.playList = [listOfModelBaseObjects copy];
+        [self.tableView reloadData];
+            } onError:^(NSError *engineError) {
+                DLog(@"error %@",engineError);
+            }];
 }
 
 #pragma tableView datasoure delegate
