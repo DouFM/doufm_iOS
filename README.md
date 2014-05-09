@@ -18,7 +18,9 @@
 * [DOUAudioStreamer](https://github.com/douban/DOUAudioStreamer) ： 实现流媒体播放
 
 ---
-## Copyright (c) 2013-2014 iMinder (https://github.com/DouFM/doufm_iOS)
+## Licence
+    
+    Copyright (c) 2013-2014 iMinder (https://github.com/DouFM/doufm_iOS)
 
      Permission is hereby granted, free of charge, to any person obtaining a copy
      of this software and associated documentation files (the "Software"), to deal
