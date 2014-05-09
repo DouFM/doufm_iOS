@@ -24,13 +24,6 @@
     self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuViewController"];
     self.backgroundImage = [UIImage imageNamed:@"Background"];
     self.delegate = self;
-    
-//    [AppDelegate.engine fetchSongItemsFrom:0
-//                                     toEnd:20
-//                                OnSucceded:(^ NSMutableArray *listOfModelBaseObjects){
-//                                    DLog(@"%@", list);
-//                                }
-//                                   onError:(ErrorBlock)errorBlock];
 }
 
 #pragma mark -

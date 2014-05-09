@@ -16,6 +16,8 @@
 #import <MediaPlayer/MPNowPlayingInfoCenter.h>
 #import <MediaPlayer/MPMediaItem.h>
 #import "Reachability.h"
+#import "DouFMLeftViewController.h"
+#import "RESideMenu.h"
 
 extern NSString *remoteControlPlayButtonTapped;
 extern NSString *remoteControlPauseButtonTapped;
@@ -27,6 +29,7 @@ extern NSString *remoteControlTogglePlayPause;
 
 static void *kStatusKVOKey = &kStatusKVOKey;
 static void *kDurationKVOKey = &kDurationKVOKey;
+static void *kMusicKVOKey = &kMusicKVOKey;
 
 @interface DouFMContentViewController()
 
@@ -38,6 +41,25 @@ static void *kDurationKVOKey = &kDurationKVOKey;
 
 @implementation DouFMContentViewController
 
+- (void)_fetchSongItems
+{
+    [AppDelegate.engine fetchSongItemsFrom:_currentIndex
+                                     toEnd:_currentIndex + 10
+                                OnSucceded:^(NSMutableArray *listOfModelBaseObjects)
+     {
+         DLog(@"fetch %@", listOfModelBaseObjects);
+         self.tracks = nil;
+         _tracks = [listOfModelBaseObjects copy];
+         [self _resetStreamer];
+         
+     }
+                                   onError:^(NSError *engineError)
+     {
+         DLog(@"error %@", engineError);
+         
+     }];
+    
+}
 - (void)_cancelStreamer
 {
     
@@ -67,12 +89,15 @@ static void *kDurationKVOKey = &kDurationKVOKey;
         if (track.audioFileURL != nil)
         {
             _musicTitle.text = track.title;
+            
             self.streamPlayer = [DOUAudioStreamer streamerWithAudioFile:track];
             [_streamPlayer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
             [_streamPlayer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
             _streamPlayer.volume = 1.0;
             
             [_streamPlayer play];
+            //设置下一个要播放的音乐
+            [self _setupHintForStreamer];
             //设置音乐台控制信息
             if ([MPNowPlayingInfoCenter class])
             {
@@ -109,10 +134,14 @@ static void *kDurationKVOKey = &kDurationKVOKey;
 
 - (void)_setupHintForStreamer
 {
+    //当播放到列表最后一个时，要向下加载十条数据，同时index指向0
     NSUInteger nextIndex = _currentTrackIndex + 1;
     if (nextIndex >= [_tracks count])
     {
-        nextIndex = 0;
+        _currentIndex += 10;
+        [self _fetchSongItems];
+        _currentTrackIndex = 0;
+        nextIndex = _currentTrackIndex;
     }
     
     [DOUAudioStreamer setHintWithAudioFile:[_tracks objectAtIndex:nextIndex]];
@@ -121,7 +150,7 @@ static void *kDurationKVOKey = &kDurationKVOKey;
 - (void)_timerAction:(id)timer
 {
    
-    self.title = [NSString stringWithFormat:@"%d:%02d", (int)(_streamPlayer.duration - _streamPlayer.currentTime) / 60, (int)(_streamPlayer.duration - _streamPlayer.currentTime)  % 60];
+    _leftTime.text = [NSString stringWithFormat:@"%d:%02d", (int)(_streamPlayer.duration - _streamPlayer.currentTime) / 60, (int)(_streamPlayer.duration - _streamPlayer.currentTime)  % 60];
     
 }
 
@@ -172,15 +201,30 @@ static void *kDurationKVOKey = &kDurationKVOKey;
         [self performSelectorOnMainThread:@selector(_timerAction:) withObject:nil waitUntilDone:NO];
 
     }
+    else if (context == kMusicKVOKey)
+    {
+        [self performSelectorOnMainThread:@selector(_changeMusicType) withObject:nil waitUntilDone:NO];
+    }
     else
     {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
+- (void)_changeMusicType
+{
+    //默认音乐类型改变，就要重新加载新类型歌曲
+    _currentIndex = 0;
+    _currentTrackIndex = 0;
+    self.tracks = nil;
+    [self _fetchSongItems];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // 注册监听事件通知的代码
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlPlayButtonTapped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlPauseButtonTapped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlStopButtonTapped object:nil];
@@ -188,6 +232,17 @@ static void *kDurationKVOKey = &kDurationKVOKey;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlBackwardButtonTapped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlOtherButtonTapped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlTogglePlayPause object:nil];
+    
+    //注册监听左侧音乐类型的observer
+    DouFMLeftViewController *leftViewController = (DouFMLeftViewController *)self.sideMenuViewController.leftMenuViewController;
+    if (leftViewController)
+    {
+        [leftViewController addObserver:self
+                             forKeyPath:@"musicType"
+                                options:NSKeyValueObservingOptionNew
+                                context:kMusicKVOKey];
+    }
+  
     
     Reachability  *_reachability = [Reachability reachabilityWithHostname:kBaseURL];
     
@@ -199,25 +254,8 @@ static void *kDurationKVOKey = &kDurationKVOKey;
             dispatch_async(dispatch_get_main_queue(), ^{
                 if ([_tracks count] == 0)
                 {
-                    [AppDelegate.engine fetchSongItemsFrom:_currentTrackIndex
-                                                     toEnd:_currentTrackIndex + 10
-                                                OnSucceded:^(NSMutableArray *listOfModelBaseObjects)
-                     {
-                         DLog(@"fetch %@", listOfModelBaseObjects)
-                         self.tracks = [listOfModelBaseObjects copy];
-                         [self _resetStreamer];
-                         
-                     }
-                                                   onError:^(NSError *engineError)
-                     {
-                         DLog(@"error %@", engineError);
-                         
-                     }];
+                    [self _fetchSongItems];
                 }
-//                else
-//                {
-//                    [_streamPlayer play];
-//                }
             });
         }
         else
@@ -226,15 +264,6 @@ static void *kDurationKVOKey = &kDurationKVOKey;
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             [[SDWebImageManager sharedManager] cancelAll];
             
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"警告"
-//                                                               message:@"请确保手机已连接到校园网Wifi"
-//                                                              delegate:self
-//                                                     cancelButtonTitle:@"好的"
-//                                                     otherButtonTitles:@"知道了", nil];
-//                [alert show];
-//            });
-
         }
     };
     
@@ -304,7 +333,15 @@ static void *kDurationKVOKey = &kDurationKVOKey;
 
 - (void)dealloc
 {
+    DouFMLeftViewController *leftViewController = (DouFMLeftViewController *)self.sideMenuViewController.leftMenuViewController;
+    
+    if (leftViewController)
+    {
+        [leftViewController removeObserver:self forKeyPath:@"musicType"];
+    }
+    
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
 }
 - (IBAction)play:(id)sender {
     if (_streamPlayer.status == DOUAudioStreamerPaused ||

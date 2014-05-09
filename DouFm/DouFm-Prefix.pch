@@ -19,7 +19,7 @@
 #endif
 
 #define kBaseURL @"doufm.info"
-
+#define kMusicType @"musicType"
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>

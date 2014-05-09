@@ -22,12 +22,22 @@
 }
 
 
-- (RESTfulOperation *) fetchSongItemsFrom:(int )start
-                                    toEnd:(int )end
+- (RESTfulOperation *) fetchSongItemsFrom:(NSUInteger )start
+                                    toEnd:(NSUInteger )end
                                OnSucceded:(ArrayBlock)succededBlock
                                   onError:(ErrorBlock)errorBlock
 {
-    NSString *path = [NSString stringWithFormat:@"%@start=%d&end=%d", SONG_ITEMS_URL, start, end];
+    NSString *key =[[NSUserDefaults standardUserDefaults] objectForKey:kMusicType];
+    NSString *path;
+    if (key == nil)
+    {
+        path = [NSString stringWithFormat:@"%@start=%lu&end=%lu", SONG_ITEMS_URL, (unsigned long)start, (unsigned long)end];
+    }
+    else
+    {
+        path = [NSString stringWithFormat:@"%@%@/?num=%d", PLAY_LIST_URL, key, 10];
+    }
+  
     RESTfulOperation *op = (RESTfulOperation *)[self operationWithPath:path];
     [op onCompletion:^(MKNetworkOperation *completedOperation) {
         NSMutableArray *responseItemsJson = [completedOperation responseJSON];

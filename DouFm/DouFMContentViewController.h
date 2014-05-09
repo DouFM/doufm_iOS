@@ -11,7 +11,8 @@
 
 @interface DouFMContentViewController : UIViewController
 
-@property (nonatomic, copy) NSArray *tracks;
+@property (nonatomic, copy) NSMutableArray *tracks;
+@property (assign, nonatomic) NSUInteger currentIndex;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *musicTitle;

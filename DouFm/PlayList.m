@@ -39,7 +39,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.key forKey:@"name"];
+    [aCoder encodeObject:self.key forKey:@"key"];
     [aCoder encodeObject:self.music_list forKey:@"music_list"];
     
 }

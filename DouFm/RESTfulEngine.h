@@ -25,8 +25,8 @@ typedef void (^ErrorBlock) (NSError * engineError);
 /*
  * 获取由start开始到end结束的歌曲数据
  */
-- (RESTfulOperation *) fetchSongItemsFrom:(int )start
-                                    toEnd:(int )end
+- (RESTfulOperation *) fetchSongItemsFrom:(NSUInteger )start
+                                    toEnd:(NSUInteger )end
                                OnSucceded:(ArrayBlock)succededBlock
                                   onError:(ErrorBlock)errorBlock;
 - (RESTfulOperation *) fetchPlayListOnSucceded:(ArrayBlock)succededBlock

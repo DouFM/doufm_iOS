@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (copy, nonatomic) NSArray *playList;
+@property (strong, nonatomic) NSString *musicType;
 
 @end
