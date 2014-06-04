@@ -15,7 +15,7 @@
  */
 @interface PlayList : JSONModel
 
-@property (assign, nonatomic) NSString *music_list;
+@property (assign, nonatomic) NSUInteger music_list;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *key;
 

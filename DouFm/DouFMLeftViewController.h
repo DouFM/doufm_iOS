@@ -15,4 +15,5 @@
 @property (copy, nonatomic) NSArray *playList;
 @property (strong, nonatomic) NSString *musicType;
 
+//- (NSString *)dogMyCats:(NSString *)cats;
 @end

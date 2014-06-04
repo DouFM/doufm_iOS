@@ -40,16 +40,16 @@
 {
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.key forKey:@"key"];
-    [aCoder encodeObject:self.music_list forKey:@"music_list"];
+    [aCoder encodeInt:self.music_list forKey:@"music_list"];
     
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super init];
+    self = [super initWithCoder:aDecoder];
     if (self) {
         self.name = [aDecoder decodeObjectForKey:@"name"];
-        self.music_list = [aDecoder decodeObjectForKey:@"music_list"];
+        self.music_list = [aDecoder decodeIntForKey:@"music_list"];
         self.key = [aDecoder decodeObjectForKey:@"key"];
     }
     return self;
@@ -60,7 +60,7 @@
     id theCopy = [[[self class]allocWithZone:zone]init];
     
     [theCopy setName:[self.name copy]];
-    [theCopy setMusic_list:[self.music_list copy]];
+    [theCopy setMusic_list:self.music_list];
     [theCopy setKey:[self.key copy]];
     
     return theCopy;

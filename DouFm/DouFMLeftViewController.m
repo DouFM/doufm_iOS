@@ -31,24 +31,29 @@
     _tableView.bounces = NO;
     _tableView.scrollsToTop = NO;
     
-    [AppDelegate.engine fetchPlayListOnSucceded:^(NSMutableArray *listOfModelBaseObjects)
-    {
-        DLog(@"fetch items %@", listOfModelBaseObjects);
-        self.playList = [listOfModelBaseObjects copy];
-        PlayList *playList = [_playList objectAtIndex:0];
-        
-        [[NSUserDefaults standardUserDefaults]setObject:playList.key forKey:kMusicType];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        
-        self.musicType = playList.key;
-        [self.tableView reloadData];
-        
-    }onError:^(NSError *engineError)
-    {
-        DLog(@"error %@",engineError);
-    }];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [AppDelegate.engine fetchPlayListOnSucceded:^(NSMutableArray *listOfModelBaseObjects)
+     {
+         DLog(@"fetch items %@", listOfModelBaseObjects);
+         self.playList = [listOfModelBaseObjects copy];
+         PlayList *playList = [_playList objectAtIndex:0];
+         
+         [[NSUserDefaults standardUserDefaults]setObject:playList.key forKey:kMusicType];
+         [[NSUserDefaults standardUserDefaults]synchronize];
+         
+         self.musicType = playList.key;
+         [self.tableView reloadData];
+         
+     }onError:^(NSError *engineError)
+     {
+         DLog(@"error %@",engineError);
+     }];
+    
+    [super viewDidAppear:animated];
+}
 #pragma mark -
 #pragma mark UITableView Datasource
 
@@ -95,9 +100,12 @@
     }
     
     [[NSUserDefaults standardUserDefaults]setObject:playList.key forKey:kMusicType];
+    [[NSUserDefaults standardUserDefaults]setObject:playList.name forKey:kMusicTypeName];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    
     self.musicType = playList.key;
     [self.sideMenuViewController hideMenuViewController];
 
 }
+
 @end

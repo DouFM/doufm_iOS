@@ -74,7 +74,6 @@
         self.company = [aDecoder decodeObjectForKey:@"company"];
         self.cover = [aDecoder decodeObjectForKey:@"cover"];
         self.public_time = [aDecoder decodeObjectForKey:@"public_time"];
-        
     }
     return self;
 }

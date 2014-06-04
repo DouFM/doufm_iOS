@@ -115,7 +115,8 @@ static NSOperationQueue *_sharedNetworkQueue;
     if([headers objectForKey:@"User-Agent"] == nil) {
       
       NSMutableDictionary *newHeadersDict = [headers mutableCopy];
-      NSString *userAgentString = [NSString stringWithFormat:@"%@/%@", 
+      NSString *userAgentString = [NSString stringWithFormat:@"iOS%@/%@/%@",
+                                   [[UIDevice currentDevice]systemVersion],
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey], 
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]];
       [newHeadersDict setObject:userAgentString forKey:@"User-Agent"];

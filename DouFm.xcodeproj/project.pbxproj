@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C177BAF193E24C10063489E /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C177BAE193E24C10063489E /* FXBlurView.m */; };
 		8C3690751917E4AB00264891 /* DOUAudioAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C36904D1917E4AB00264891 /* DOUAudioAnalyzer.m */; };
 		8C3690761917E4AB00264891 /* DOUAudioAnalyzer+Default.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C36904F1917E4AB00264891 /* DOUAudioAnalyzer+Default.m */; };
 		8C3690771917E4AB00264891 /* DOUAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3690521917E4AB00264891 /* DOUAudioDecoder.m */; };
@@ -78,6 +79,9 @@
 		8C9D8444190E61450095D6D4 /* DouFMRooterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D8443190E61450095D6D4 /* DouFMRooterViewController.m */; };
 		8C9D8447190E63970095D6D4 /* DouFMLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D8446190E63970095D6D4 /* DouFMLeftViewController.m */; };
 		8C9D844A190E63E60095D6D4 /* DouFMContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D8449190E63E60095D6D4 /* DouFMContentViewController.m */; };
+		8CB7C53C193F62E500E9046C /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB7C538193F62E500E9046C /* pause.png */; };
+		8CB7C53D193F62E500E9046C /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB7C539193F62E500E9046C /* start.png */; };
+		8CB7C53E193F62E500E9046C /* JingRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C53B193F62E500E9046C /* JingRoundView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C177BAD193E24C10063489E /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		8C177BAE193E24C10063489E /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		8C36904B1917E4AB00264891 /* DOUAudioAnalyzer_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOUAudioAnalyzer_Private.h; path = "../../ 一些好的iOS开源东东/DOUAudioStreamer-master/DOUAudioStreamer-master/src/DOUAudioAnalyzer_Private.h"; sourceTree = "<group>"; };
 		8C36904C1917E4AB00264891 /* DOUAudioAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOUAudioAnalyzer.h; path = "../../ 一些好的iOS开源东东/DOUAudioStreamer-master/DOUAudioStreamer-master/src/DOUAudioAnalyzer.h"; sourceTree = "<group>"; };
 		8C36904D1917E4AB00264891 /* DOUAudioAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOUAudioAnalyzer.m; path = "../../ 一些好的iOS开源东东/DOUAudioStreamer-master/DOUAudioStreamer-master/src/DOUAudioAnalyzer.m"; sourceTree = "<group>"; };
@@ -226,6 +232,10 @@
 		8C9D8446190E63970095D6D4 /* DouFMLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DouFMLeftViewController.m; sourceTree = "<group>"; };
 		8C9D8448190E63E50095D6D4 /* DouFMContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouFMContentViewController.h; sourceTree = "<group>"; };
 		8C9D8449190E63E60095D6D4 /* DouFMContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DouFMContentViewController.m; sourceTree = "<group>"; };
+		8CB7C538193F62E500E9046C /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		8CB7C539193F62E500E9046C /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		8CB7C53A193F62E500E9046C /* JingRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JingRoundView.h; sourceTree = "<group>"; };
+		8CB7C53B193F62E500E9046C /* JingRoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JingRoundView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +267,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C177BAC193E24C10063489E /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				8C177BAD193E24C10063489E /* FXBlurView.h */,
+				8C177BAE193E24C10063489E /* FXBlurView.m */,
+			);
+			path = FXBlurView;
+			sourceTree = "<group>";
+		};
 		8C36900D1917E43400264891 /* DOUAudioStreamer */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +421,8 @@
 		8C9D83F6190E54EB0095D6D4 = {
 			isa = PBXGroup;
 			children = (
+				8CB7C536193F62E500E9046C /* JingRound */,
+				8C177BAC193E24C10063489E /* FXBlurView */,
 				8C3690C9191B14CD00264891 /* SDWebImage */,
 				8C3690881918D25400264891 /* MKNetworkKit */,
 				8C36900D1917E43400264891 /* DOUAudioStreamer */,
@@ -510,6 +531,25 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		8CB7C536193F62E500E9046C /* JingRound */ = {
+			isa = PBXGroup;
+			children = (
+				8CB7C537193F62E500E9046C /* image */,
+				8CB7C53A193F62E500E9046C /* JingRoundView.h */,
+				8CB7C53B193F62E500E9046C /* JingRoundView.m */,
+			);
+			path = JingRound;
+			sourceTree = "<group>";
+		};
+		8CB7C537193F62E500E9046C /* image */ = {
+			isa = PBXGroup;
+			children = (
+				8CB7C538193F62E500E9046C /* pause.png */,
+				8CB7C539193F62E500E9046C /* start.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -595,6 +635,8 @@
 			files = (
 				8C9D841B190E54EC0095D6D4 /* Images.xcassets in Resources */,
 				8C9D840D190E54EC0095D6D4 /* InfoPlist.strings in Resources */,
+				8CB7C53D193F62E500E9046C /* start.png in Resources */,
+				8CB7C53C193F62E500E9046C /* pause.png in Resources */,
 				8C9D8416190E54EC0095D6D4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,6 +693,7 @@
 				8C3690EE191B14CD00264891 /* SDWebImageManager.m in Sources */,
 				8C3690EB191B14CD00264891 /* SDWebImageDecoder.m in Sources */,
 				8C3690B61919309600264891 /* PlayList.m in Sources */,
+				8C177BAF193E24C10063489E /* FXBlurView.m in Sources */,
 				8C9D8440190E55AC0095D6D4 /* UIViewController+RESideMenu.m in Sources */,
 				8C3690AA1918DAEB00264891 /* SongItem.m in Sources */,
 				8C3690791917E4AB00264891 /* DOUAudioFilePreprocessor.m in Sources */,
@@ -668,6 +711,7 @@
 				8C36909C1918D25400264891 /* NSData+Base64.m in Sources */,
 				8C3690A71918D83500264891 /* JSONModel.m in Sources */,
 				8C3690A31918D25400264891 /* Reachability.m in Sources */,
+				8CB7C53E193F62E500E9046C /* JingRoundView.m in Sources */,
 				8C3690761917E4AB00264891 /* DOUAudioAnalyzer+Default.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

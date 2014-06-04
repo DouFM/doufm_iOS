@@ -18,6 +18,8 @@
 #import "Reachability.h"
 #import "DouFMLeftViewController.h"
 #import "RESideMenu.h"
+#import "FXBlurView.h"
+#import "JingRoundView.h"
 
 extern NSString *remoteControlPlayButtonTapped;
 extern NSString *remoteControlPauseButtonTapped;
@@ -31,11 +33,14 @@ static void *kStatusKVOKey = &kStatusKVOKey;
 static void *kDurationKVOKey = &kDurationKVOKey;
 static void *kMusicKVOKey = &kMusicKVOKey;
 
-@interface DouFMContentViewController()
+@interface DouFMContentViewController()<JingRoundViewDelegate>
 
 @property (strong, nonatomic) DOUAudioStreamer *streamPlayer;
 @property (assign, nonatomic) NSUInteger currentTrackIndex;
 @property (strong, nonatomic) NSTimer *timer;
+
+@property (weak, nonatomic) IBOutlet FXBlurView *blurView;
+@property (weak, nonatomic) IBOutlet JingRoundView *roundView;
 
 @end
 
@@ -62,9 +67,8 @@ static void *kMusicKVOKey = &kMusicKVOKey;
 }
 - (void)_cancelStreamer
 {
-    
     if (self.streamPlayer) {
-        [_streamPlayer pause];
+        [_streamPlayer stop];
         [_streamPlayer removeObserver:self forKeyPath:@"status"];
         [_streamPlayer removeObserver:self forKeyPath:@"duration"];
         self.streamPlayer = nil;
@@ -95,7 +99,7 @@ static void *kMusicKVOKey = &kMusicKVOKey;
             [_streamPlayer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
             _streamPlayer.volume = 1.0;
             
-            [_streamPlayer play];
+            [self play:nil];
             //设置下一个要播放的音乐
             [self _setupHintForStreamer];
             //设置音乐台控制信息
@@ -121,6 +125,8 @@ static void *kMusicKVOKey = &kMusicKVOKey;
                                    
                                    if (image && finished)
                                    {
+                                       self.backgroundImageView.image = image;
+                                       self.roundView.roundImage = image;
                                        MPMediaItemArtwork *albumArt = [[MPMediaItemArtwork alloc]initWithImage:image];
                                        [songInfo setObject:albumArt forKey:MPMediaItemPropertyArtwork];
                                        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
@@ -149,7 +155,6 @@ static void *kMusicKVOKey = &kMusicKVOKey;
 
 - (void)_timerAction:(id)timer
 {
-   
     _leftTime.text = [NSString stringWithFormat:@"%d:%02d", (int)(_streamPlayer.duration - _streamPlayer.currentTime) / 60, (int)(_streamPlayer.duration - _streamPlayer.currentTime)  % 60];
     
 }
@@ -165,17 +170,17 @@ static void *kMusicKVOKey = &kMusicKVOKey;
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             break;
         case DOUAudioStreamerBuffering:
-            self.title = @"正在缓冲...";
+            DLog(@"正在缓冲...")
             break;
         case DOUAudioStreamerFinished:
             [self next:nil];
             break;
         case DOUAudioStreamerIdle:
-            self.title = @"空闲中...";
+            DLog(@"空闲中...")
             break;
         case  DOUAudioStreamerError:
             DLog(@"error happend");
-            self.title = @"出错了...";
+            DLog(@"出错了...");
             break;
         default:
             break;
@@ -214,6 +219,8 @@ static void *kMusicKVOKey = &kMusicKVOKey;
 - (void)_changeMusicType
 {
     //默认音乐类型改变，就要重新加载新类型歌曲
+    NSString *title = [[NSUserDefaults standardUserDefaults]valueForKey:kMusicTypeName];
+    self.title = title;
     _currentIndex = 0;
     _currentTrackIndex = 0;
     self.tracks = nil;
@@ -260,6 +267,7 @@ static void *kMusicKVOKey = &kMusicKVOKey;
         }
         else
         {
+            [self.roundView pause];
             [_streamPlayer pause];
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             [[SDWebImageManager sharedManager] cancelAll];
@@ -271,6 +279,7 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            [self.roundView pause];
             [_streamPlayer pause];
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             [[SDWebImageManager sharedManager] cancelAll];
@@ -281,6 +290,31 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     [_reachability startNotifier];
 }
 
+- (void)awakeFromNib
+{
+    UIImage *image = [UIImage imageNamed:@"left_menu"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.leftBarButton setImage:image];
+    
+    image = [UIImage imageNamed:@"right_menu"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.rightBarButton setImage:image];
+    
+    
+    NSString *title = [[NSUserDefaults standardUserDefaults]valueForKey:kMusicTypeName];
+    self.title = title;
+    
+    self.blurView.dynamic = NO;
+    //self.blurView.tintColor = [UIColor colorWithRed:0 green:0.5 blue:0.5 alpha:1];
+    self.blurView.blurRadius = 1.0;
+    
+    //更新旋转图形
+    self.roundView.delegate = self;
+    self.roundView.rotationDuration = 20.0;
+    self.roundView.isPlay = NO;
+
+
+}
 
 - (void)handleNotification:(NSNotification *)notification
 {
@@ -321,7 +355,6 @@ static void *kMusicKVOKey = &kMusicKVOKey;
                                                 selector:@selector(_timerAction:)
                                                 userInfo:nil
                                                  repeats:YES];
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -349,10 +382,12 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     {
         [_playButton setBackgroundImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
         [_streamPlayer play];
+        [self.roundView play];
     }
     else
     {
         [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+        [self.roundView pause];
         [_streamPlayer pause];
     }
 }
@@ -365,5 +400,19 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     [self _resetStreamer];
 }
 
+- (IBAction)showLeft:(id)sender
+{
+    [self.sideMenuViewController presentLeftMenuViewController];
+}
+
+- (IBAction)showRight:(id)sender
+{
+    
+}
+
+- (void)playStatuUpdate:(BOOL)playState
+{
+    
+}
 
 @end

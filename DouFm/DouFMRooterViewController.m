@@ -24,6 +24,24 @@
     self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuViewController"];
     self.backgroundImage = [UIImage imageNamed:@"Background"];
     self.delegate = self;
+    
+//    NSMutableString *strName = [NSMutableString stringWithString:@"hello"];
+//    self.name = [strName mutableCopy];
+//    [strName appendString:@" world"];
+//    DLog(@"name %@",self.name);
+//    NSArray * arr = [NSArray arrayWithObjects:@"1", @"2", @"3", nil];
+//    
+//    NSMutableArray *dataArray = [NSMutableArray arrayWithObjects:[NSMutableString stringWithString:@"hello"], [NSMutableString stringWithString:@"world"], nil];//[NSMutableArray arrayWithObjects:@"one", @"two", @"three", nil];
+//    //NSMutableArray *dataArray2 = [arr mutableCopy];
+//    NSMutableArray *dataArray2 = [dataArray mutableCopy];
+//    NSMutableString *str = [dataArray objectAtIndex:0];
+//    [str appendString:@"world"];
+//    //[dataArray removeObjectAtIndex:0];
+//   // [dataArray2 removeObjectAtIndex:2];
+//    DLog(@"dataArray %@", dataArray)
+//    DLog(@"dataArray2 %@", dataArray2);
+   
+    
 }
 
 #pragma mark -

@@ -23,6 +23,14 @@
     
     self.engine = [[RESTfulEngine alloc] initWithHostName:kBaseURL];
     
+    //[[UINavigationBar appearance]setBarTintColor:[UIColor redColor]];
+   // [[UINavigationBar appearance]setTranslucent:NO];
+    
+    //[[UINavigationBar appearance]setTintColor:[UIColor redColor]];
+    
+    //设置navigation bar的颜色
+    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navigation_background"] forBarMetrics:UIBarMetricsDefault];
+    
     return YES;
 }
 

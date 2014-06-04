@@ -7,8 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "DouFMLeftViewController.h"
 
 @interface DouFmTests : XCTestCase
+
+@property DouFMLeftViewController *leftViewController;
 
 @end
 
@@ -18,6 +21,7 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.leftViewController = [DouFMLeftViewController new];
 }
 
 - (void)tearDown
@@ -26,9 +30,15 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
+//- (void)testExample
+//{
+//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//}
+
+//- (void)testMyDogCats
+//{
+//    NSString *cats = @"cats";
+//    XCTAssertEqualObjects([self.leftViewController dogMyCats:cats], @"dogs", @"ouFMLeftViewController fail to produce dogs from \"%@\"", cats);
+//}
 
 @end
