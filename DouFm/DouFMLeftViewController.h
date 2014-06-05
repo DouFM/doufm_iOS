@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface DouFMLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface DouFMLeftViewController : UIViewController <RESideMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (copy, nonatomic) NSArray *playList;
 @property (strong, nonatomic) NSString *musicType;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 //- (NSString *)dogMyCats:(NSString *)cats;
 @end

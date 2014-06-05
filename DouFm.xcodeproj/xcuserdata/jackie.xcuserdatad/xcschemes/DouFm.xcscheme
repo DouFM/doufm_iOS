@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
                BuildableName = "DouFm.app"
-               BlueprintName = "DouFm"
+               BlueprintName = "DouFM"
                ReferencedContainer = "container:DouFm.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
             BuildableName = "DouFm.app"
-            BlueprintName = "DouFm"
+            BlueprintName = "DouFM"
             ReferencedContainer = "container:DouFm.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
             BuildableName = "DouFm.app"
-            BlueprintName = "DouFm"
+            BlueprintName = "DouFM"
             ReferencedContainer = "container:DouFm.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
             BuildableName = "DouFm.app"
-            BlueprintName = "DouFm"
+            BlueprintName = "DouFM"
             ReferencedContainer = "container:DouFm.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

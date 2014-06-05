@@ -165,11 +165,14 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     {
         case DOUAudioStreamerPlaying:
             [_playButton setBackgroundImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
+            [self.roundView play];
             break;
         case DOUAudioStreamerPaused:
+            [self.roundView pause];
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             break;
         case DOUAudioStreamerBuffering:
+            [self.roundView pause];
             DLog(@"正在缓冲...")
             break;
         case DOUAudioStreamerFinished:
@@ -267,7 +270,7 @@ static void *kMusicKVOKey = &kMusicKVOKey;
         }
         else
         {
-            [self.roundView pause];
+            //[self.roundView pause];
             [_streamPlayer pause];
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             [[SDWebImageManager sharedManager] cancelAll];
@@ -279,7 +282,7 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [self.roundView pause];
+           // [self.roundView pause];
             [_streamPlayer pause];
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             [[SDWebImageManager sharedManager] cancelAll];
@@ -312,7 +315,6 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     self.roundView.delegate = self;
     self.roundView.rotationDuration = 20.0;
     self.roundView.isPlay = NO;
-
 
 }
 
@@ -348,19 +350,24 @@ static void *kMusicKVOKey = &kMusicKVOKey;
 {
     [super viewDidAppear:animated];
     
-    [self _resetStreamer];
+    //[self _resetStreamer];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                   target:self
                                                 selector:@selector(_timerAction:)
                                                 userInfo:nil
                                                  repeats:YES];
+    if (_streamPlayer.status == DOUAudioStreamerPlaying) {
+        [self.roundView play];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [_timer invalidate];
     self.timer = nil;
+    [self.roundView pause];
+    
     [super viewDidDisappear:animated];
 }
 
@@ -382,12 +389,12 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     {
         [_playButton setBackgroundImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
         [_streamPlayer play];
-        [self.roundView play];
+       // [self.roundView play];
     }
     else
     {
         [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-        [self.roundView pause];
+        //[self.roundView pause];
         [_streamPlayer pause];
     }
 }

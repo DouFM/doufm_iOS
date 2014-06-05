@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C177BAF193E24C10063489E /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C177BAE193E24C10063489E /* FXBlurView.m */; };
+		8C2530341940803A00165FFE /* DouFMSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2530331940803A00165FFE /* DouFMSettingController.m */; };
 		8C3690751917E4AB00264891 /* DOUAudioAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C36904D1917E4AB00264891 /* DOUAudioAnalyzer.m */; };
 		8C3690761917E4AB00264891 /* DOUAudioAnalyzer+Default.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C36904F1917E4AB00264891 /* DOUAudioAnalyzer+Default.m */; };
 		8C3690771917E4AB00264891 /* DOUAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3690521917E4AB00264891 /* DOUAudioDecoder.m */; };
@@ -60,6 +61,9 @@
 		8C3690F2191B14CD00264891 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3690E2191B14CD00264891 /* UIImage+MultiFormat.m */; };
 		8C3690F3191B14CD00264891 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3690E4191B14CD00264891 /* UIImage+WebP.m */; };
 		8C3690F4191B14CD00264891 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3690E6191B14CD00264891 /* UIImageView+WebCache.m */; };
+		8C3762801940B80800A26087 /* UsageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 8C37627F1940B80800A26087 /* UsageDescription.html */; };
+		8C3762821940C12300A26087 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = 8C3762811940C12200A26087 /* AboutUs.html */; };
+		8C3762841940C2CB00A26087 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3762831940C2CB00A26087 /* MessageUI.framework */; };
 		8C9D8403190E54EC0095D6D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D8402190E54EC0095D6D4 /* Foundation.framework */; };
 		8C9D8405190E54EC0095D6D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D8404190E54EC0095D6D4 /* CoreGraphics.framework */; };
 		8C9D8407190E54EC0095D6D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D8406190E54EC0095D6D4 /* UIKit.framework */; };
@@ -98,6 +102,8 @@
 /* Begin PBXFileReference section */
 		8C177BAD193E24C10063489E /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		8C177BAE193E24C10063489E /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		8C2530321940803A00165FFE /* DouFMSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouFMSettingController.h; sourceTree = "<group>"; };
+		8C2530331940803A00165FFE /* DouFMSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DouFMSettingController.m; sourceTree = "<group>"; };
 		8C36904B1917E4AB00264891 /* DOUAudioAnalyzer_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOUAudioAnalyzer_Private.h; path = "../../ 一些好的iOS开源东东/DOUAudioStreamer-master/DOUAudioStreamer-master/src/DOUAudioAnalyzer_Private.h"; sourceTree = "<group>"; };
 		8C36904C1917E4AB00264891 /* DOUAudioAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOUAudioAnalyzer.h; path = "../../ 一些好的iOS开源东东/DOUAudioStreamer-master/DOUAudioStreamer-master/src/DOUAudioAnalyzer.h"; sourceTree = "<group>"; };
 		8C36904D1917E4AB00264891 /* DOUAudioAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOUAudioAnalyzer.m; path = "../../ 一些好的iOS开源东东/DOUAudioStreamer-master/DOUAudioStreamer-master/src/DOUAudioAnalyzer.m"; sourceTree = "<group>"; };
@@ -204,6 +210,9 @@
 		8C3690E4191B14CD00264891 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 		8C3690E5191B14CD00264891 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		8C3690E6191B14CD00264891 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		8C37627F1940B80800A26087 /* UsageDescription.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UsageDescription.html; sourceTree = "<group>"; };
+		8C3762811940C12200A26087 /* AboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutUs.html; sourceTree = "<group>"; };
+		8C3762831940C2CB00A26087 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8C9D83FF190E54EB0095D6D4 /* DouFm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouFm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D8402190E54EC0095D6D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C9D8404190E54EC0095D6D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -246,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3762841940C2CB00A26087 /* MessageUI.framework in Frameworks */,
 				8C3690C3191A005F00264891 /* AudioToolbox.framework in Frameworks */,
 				8C3690C1191A005700264891 /* CoreAudio.framework in Frameworks */,
 				8C3690BF191A004F00264891 /* CFNetwork.framework in Frameworks */,
@@ -449,6 +459,7 @@
 		8C9D8401190E54EC0095D6D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C3762831940C2CB00A26087 /* MessageUI.framework */,
 				8C3690C2191A005F00264891 /* AudioToolbox.framework */,
 				8C3690C0191A005700264891 /* CoreAudio.framework */,
 				8C3690BE191A004F00264891 /* CFNetwork.framework */,
@@ -476,6 +487,8 @@
 		8C9D8409190E54EC0095D6D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8C3762811940C12200A26087 /* AboutUs.html */,
+				8C37627F1940B80800A26087 /* UsageDescription.html */,
 				8C9D841A190E54EC0095D6D4 /* Images.xcassets */,
 				8C9D8414190E54EC0095D6D4 /* Main.storyboard */,
 				8C9D840A190E54EC0095D6D4 /* DouFm-Info.plist */,
@@ -527,6 +540,8 @@
 				8C9D8446190E63970095D6D4 /* DouFMLeftViewController.m */,
 				8C9D8448190E63E50095D6D4 /* DouFMContentViewController.h */,
 				8C9D8449190E63E60095D6D4 /* DouFMContentViewController.m */,
+				8C2530321940803A00165FFE /* DouFMSettingController.h */,
+				8C2530331940803A00165FFE /* DouFMSettingController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -574,9 +589,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8C9D83FE190E54EB0095D6D4 /* DouFm */ = {
+		8C9D83FE190E54EB0095D6D4 /* DouFM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8C9D8431190E54EC0095D6D4 /* Build configuration list for PBXNativeTarget "DouFm" */;
+			buildConfigurationList = 8C9D8431190E54EC0095D6D4 /* Build configuration list for PBXNativeTarget "DouFM" */;
 			buildPhases = (
 				8C9D83FB190E54EB0095D6D4 /* Sources */,
 				8C9D83FC190E54EB0095D6D4 /* Frameworks */,
@@ -586,7 +601,7 @@
 			);
 			dependencies = (
 			);
-			name = DouFm;
+			name = DouFM;
 			productName = DouFm;
 			productReference = 8C9D83FF190E54EB0095D6D4 /* DouFm.app */;
 			productType = "com.apple.product-type.application";
@@ -643,7 +658,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8C9D83FE190E54EB0095D6D4 /* DouFm */,
+				8C9D83FE190E54EB0095D6D4 /* DouFM */,
 				8C9D841F190E54EC0095D6D4 /* DouFmTests */,
 			);
 		};
@@ -654,9 +669,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3762821940C12300A26087 /* AboutUs.html in Resources */,
 				8C9D841B190E54EC0095D6D4 /* Images.xcassets in Resources */,
 				8C9D840D190E54EC0095D6D4 /* InfoPlist.strings in Resources */,
 				8CB7C53D193F62E500E9046C /* start.png in Resources */,
+				8C3762801940B80800A26087 /* UsageDescription.html in Resources */,
 				8CB7C53C193F62E500E9046C /* pause.png in Resources */,
 				8C9D8416190E54EC0095D6D4 /* Main.storyboard in Resources */,
 			);
@@ -732,6 +749,7 @@
 				8C3690B31919076B00264891 /* RESTfulOperation.m in Sources */,
 				8C36909C1918D25400264891 /* NSData+Base64.m in Sources */,
 				8C3690A71918D83500264891 /* JSONModel.m in Sources */,
+				8C2530341940803A00165FFE /* DouFMSettingController.m in Sources */,
 				8C3690A31918D25400264891 /* Reachability.m in Sources */,
 				8CB7C53E193F62E500E9046C /* JingRoundView.m in Sources */,
 				8C3690761917E4AB00264891 /* DOUAudioAnalyzer+Default.m in Sources */,
@@ -751,7 +769,7 @@
 /* Begin PBXTargetDependency section */
 		8C9D8426190E54EC0095D6D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8C9D83FE190E54EB0095D6D4 /* DouFm */;
+			target = 8C9D83FE190E54EB0095D6D4 /* DouFM */;
 			targetProxy = 8C9D8425190E54EC0095D6D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -816,7 +834,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -848,7 +866,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -863,6 +881,7 @@
 				GCC_PREFIX_HEADER = "DouFm/DouFm-Prefix.pch";
 				INFOPLIST_FILE = "DouFm/DouFm-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -876,6 +895,7 @@
 				GCC_PREFIX_HEADER = "DouFm/DouFm-Prefix.pch";
 				INFOPLIST_FILE = "DouFm/DouFm-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -932,7 +952,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C9D8431190E54EC0095D6D4 /* Build configuration list for PBXNativeTarget "DouFm" */ = {
+		8C9D8431190E54EC0095D6D4 /* Build configuration list for PBXNativeTarget "DouFM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8C9D8432190E54EC0095D6D4 /* Debug */,

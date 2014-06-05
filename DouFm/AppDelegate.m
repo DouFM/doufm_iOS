@@ -31,6 +31,8 @@
     //设置navigation bar的颜色
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"navigation_background"] forBarMetrics:UIBarMetricsDefault];
     
+    [[UIApplication sharedApplication]beginReceivingRemoteControlEvents];
+    
     return YES;
 }
 
@@ -44,7 +46,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [[UIApplication sharedApplication]beginReceivingRemoteControlEvents];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

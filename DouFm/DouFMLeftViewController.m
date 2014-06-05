@@ -48,7 +48,8 @@ NSString *kCellID = @"cellID";
          [[NSUserDefaults standardUserDefaults]synchronize];
          
          self.musicType = playList.key;
-         [self.tableView reloadData];
+         //[self.tableView reloadData];
+         [self.collectionView reloadData];
          
      }onError:^(NSError *engineError)
      {
@@ -60,43 +61,82 @@ NSString *kCellID = @"cellID";
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 40;
+//}
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return [self.playList count];
+//}
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *cellIdentifier = @"playListIdentiy";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//        cell.backgroundColor = [UIColor clearColor];
+//        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
+//        cell.textLabel.textColor = [UIColor whiteColor];
+//        cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
+//        cell.selectedBackgroundView = [[UIView alloc] init];
+//    }
+//    PlayList *item = [self.playList objectAtIndex:indexPath.row];
+//    cell.textLabel.text = item.name;
+//    //cell.detailTextLabel.text = item.music_list;
+//    return cell;
+//}
+
+//#pragma mark UITableView Delegate method
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    PlayList *playList = [_playList objectAtIndex:indexPath.row];
+//    if ([_musicType isEqualToString:playList.key]) {
+//        [self.sideMenuViewController hideMenuViewController];
+//        return;
+//    }
+//    
+//    [[NSUserDefaults standardUserDefaults]setObject:playList.key forKey:kMusicType];
+//    [[NSUserDefaults standardUserDefaults]setObject:playList.name forKey:kMusicTypeName];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
+//    
+//    self.musicType = playList.key;
+//    [self.sideMenuViewController hideMenuViewController];
+//
+//}
+
+
+
+#pragma mark -- UICollectionDataSourceDelegate
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 40;
+    return [self.playList count] ;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.playList count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"playListIdentiy";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
-        cell.selectedBackgroundView = [[UIView alloc] init];
-    }
-    PlayList *item = [self.playList objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.name;
-    //cell.detailTextLabel.text = item.music_list;
-    return cell;
-}
-
-#pragma mark UITableView Delegate method
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+    DouFMCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
+    
     PlayList *playList = [_playList objectAtIndex:indexPath.row];
+    cell.titleLabel.text = playList.name;
+    return  cell;
+}
+
+#pragma mark --UICollectionViewDelegateMethod
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    PlayList *playList = [_playList objectAtIndex: indexPath.row];
     if ([_musicType isEqualToString:playList.key]) {
         [self.sideMenuViewController hideMenuViewController];
         return;
@@ -108,27 +148,6 @@ NSString *kCellID = @"cellID";
     
     self.musicType = playList.key;
     [self.sideMenuViewController hideMenuViewController];
-
 }
 
-
-
-#pragma mark -- UICollectionDataSourceDelegate
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 20;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    DouFMCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
-    if (cell == nil)
-    {
-        DLog(@"cell")
-    }
-    cell.titleLabel.text = @"hello";
-    return  cell;
-}
 @end
