@@ -11,6 +11,9 @@
 #import "UIViewController+RESideMenu.h"
 #import "AppDelegate.h"
 #import "PlayList.h"
+#import "DouFMCollectionCell.h"
+
+NSString *kCellID = @"cellID";
 
 @interface DouFMContentViewController()
 
@@ -108,4 +111,24 @@
 
 }
 
+
+
+#pragma mark -- UICollectionDataSourceDelegate
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DouFMCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
+    if (cell == nil)
+    {
+        DLog(@"cell")
+    }
+    cell.titleLabel.text = @"hello";
+    return  cell;
+}
 @end

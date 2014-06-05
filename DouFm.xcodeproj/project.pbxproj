@@ -82,6 +82,7 @@
 		8CB7C53C193F62E500E9046C /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB7C538193F62E500E9046C /* pause.png */; };
 		8CB7C53D193F62E500E9046C /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB7C539193F62E500E9046C /* start.png */; };
 		8CB7C53E193F62E500E9046C /* JingRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C53B193F62E500E9046C /* JingRoundView.m */; };
+		8CB7C541194009F900E9046C /* DouFMCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB7C540194009F900E9046C /* DouFMCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +237,8 @@
 		8CB7C539193F62E500E9046C /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		8CB7C53A193F62E500E9046C /* JingRoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JingRoundView.h; sourceTree = "<group>"; };
 		8CB7C53B193F62E500E9046C /* JingRoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JingRoundView.m; sourceTree = "<group>"; };
+		8CB7C53F194009F900E9046C /* DouFMCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouFMCollectionCell.h; sourceTree = "<group>"; };
+		8CB7C540194009F900E9046C /* DouFMCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DouFMCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,12 +465,9 @@
 		8C9D8408190E54EC0095D6D4 /* DouFm */ = {
 			isa = PBXGroup;
 			children = (
+				8CB7C54319400DA500E9046C /* AppDelegate */,
 				8C3690A41918D80600264891 /* Models */,
 				8C9D8441190E61190095D6D4 /* Controllers */,
-				8C9D8411190E54EC0095D6D4 /* AppDelegate.h */,
-				8C9D8412190E54EC0095D6D4 /* AppDelegate.m */,
-				8C9D8414190E54EC0095D6D4 /* Main.storyboard */,
-				8C9D841A190E54EC0095D6D4 /* Images.xcassets */,
 				8C9D8409190E54EC0095D6D4 /* Supporting Files */,
 			);
 			path = DouFm;
@@ -476,6 +476,8 @@
 		8C9D8409190E54EC0095D6D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8C9D841A190E54EC0095D6D4 /* Images.xcassets */,
+				8C9D8414190E54EC0095D6D4 /* Main.storyboard */,
 				8C9D840A190E54EC0095D6D4 /* DouFm-Info.plist */,
 				8C9D840B190E54EC0095D6D4 /* InfoPlist.strings */,
 				8C9D840E190E54EC0095D6D4 /* main.m */,
@@ -518,9 +520,7 @@
 		8C9D8441190E61190095D6D4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8C3690C5191A6B8200264891 /* Notification.h */,
-				8C3690C6191A6BC200264891 /* RCApplication.h */,
-				8C3690C7191A6BC200264891 /* RCApplication.m */,
+				8CB7C54219400D8E00E9046C /* Cell */,
 				8C9D8442190E61450095D6D4 /* DouFMRooterViewController.h */,
 				8C9D8443190E61450095D6D4 /* DouFMRooterViewController.m */,
 				8C9D8445190E63970095D6D4 /* DouFMLeftViewController.h */,
@@ -548,6 +548,27 @@
 				8CB7C539193F62E500E9046C /* start.png */,
 			);
 			path = image;
+			sourceTree = "<group>";
+		};
+		8CB7C54219400D8E00E9046C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8CB7C53F194009F900E9046C /* DouFMCollectionCell.h */,
+				8CB7C540194009F900E9046C /* DouFMCollectionCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		8CB7C54319400DA500E9046C /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				8C3690C5191A6B8200264891 /* Notification.h */,
+				8C9D8411190E54EC0095D6D4 /* AppDelegate.h */,
+				8C3690C7191A6BC200264891 /* RCApplication.m */,
+				8C3690C6191A6BC200264891 /* RCApplication.h */,
+				8C9D8412190E54EC0095D6D4 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -681,6 +702,7 @@
 				8C3690F4191B14CD00264891 /* UIImageView+WebCache.m in Sources */,
 				8C36909F1918D25400264891 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				8C36907B1917E4AB00264891 /* DOUAudioFrequencyAnalyzer.m in Sources */,
+				8CB7C541194009F900E9046C /* DouFMCollectionCell.m in Sources */,
 				8C3690821917E4AB00264891 /* DOUAudioVisualizer.m in Sources */,
 				8C3690EA191B14CD00264891 /* SDWebImageCompat.m in Sources */,
 				8C3690861917E4AB00264891 /* DOUSimpleHTTPRequest.m in Sources */,
