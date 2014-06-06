@@ -350,6 +350,16 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     }
 
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (_streamPlayer.status == DOUAudioStreamerPlaying)
+    {
+        [self.roundView play];
+    }
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -361,10 +371,7 @@ static void *kMusicKVOKey = &kMusicKVOKey;
                                                 selector:@selector(_timerAction:)
                                                 userInfo:nil
                                                  repeats:YES];
-    if (_streamPlayer.status == DOUAudioStreamerPlaying)
-    {
-        [self.roundView play];
-    }
+
 }
 
 
@@ -375,6 +382,7 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     [self.roundView pause];
     
     [super viewDidDisappear:animated];
+    
 }
 
 - (void)dealloc
