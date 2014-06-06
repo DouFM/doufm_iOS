@@ -40,7 +40,8 @@
 {
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.key forKey:@"key"];
-    [aCoder encodeInt:self.music_list forKey:@"music_list"];
+   // [aCoder encodeInt:self.music_list forKey:@"music_list"];
+    [aCoder encodeInteger:self.music_list forKey:@"music_list"];
     
 }
 

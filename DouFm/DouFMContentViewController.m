@@ -234,6 +234,9 @@ static void *kMusicKVOKey = &kMusicKVOKey;
 {
     [super viewDidLoad];
     
+    NSString *title = [[NSUserDefaults standardUserDefaults]valueForKey:kMusicTypeName];
+    self.title = title;
+    
     // 注册监听事件通知的代码
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlPlayButtonTapped object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:remoteControlPauseButtonTapped object:nil];
@@ -310,10 +313,11 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     self.blurView.dynamic = NO;
     //self.blurView.tintColor = [UIColor colorWithRed:0 green:0.5 blue:0.5 alpha:1];
     self.blurView.blurRadius = 1.0;
+    self.blurView.blurEnabled = NO;
     
     //更新旋转图形
     self.roundView.delegate = self;
-    self.roundView.rotationDuration = 20.0;
+    //self.roundView.rotationDuration = 20.0;
     self.roundView.isPlay = NO;
 
 }
@@ -357,10 +361,12 @@ static void *kMusicKVOKey = &kMusicKVOKey;
                                                 selector:@selector(_timerAction:)
                                                 userInfo:nil
                                                  repeats:YES];
-    if (_streamPlayer.status == DOUAudioStreamerPlaying) {
+    if (_streamPlayer.status == DOUAudioStreamerPlaying)
+    {
         [self.roundView play];
     }
 }
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {

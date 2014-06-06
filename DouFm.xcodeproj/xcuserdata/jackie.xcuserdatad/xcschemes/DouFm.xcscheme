@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
-               BuildableName = "DouFm.app"
+               BuildableName = "DouFM.app"
                BlueprintName = "DouFM"
                ReferencedContainer = "container:DouFm.xcodeproj">
             </BuildableReference>
@@ -28,22 +28,12 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C9D841F190E54EC0095D6D4"
-               BuildableName = "DouFmTests.xctest"
-               BlueprintName = "DouFmTests"
-               ReferencedContainer = "container:DouFm.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
-            BuildableName = "DouFm.app"
+            BuildableName = "DouFM.app"
             BlueprintName = "DouFM"
             ReferencedContainer = "container:DouFm.xcodeproj">
          </BuildableReference>
@@ -62,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
-            BuildableName = "DouFm.app"
+            BuildableName = "DouFM.app"
             BlueprintName = "DouFM"
             ReferencedContainer = "container:DouFm.xcodeproj">
          </BuildableReference>
@@ -74,13 +64,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C9D83FE190E54EB0095D6D4"
-            BuildableName = "DouFm.app"
+            BuildableName = "DouFM.app"
             BlueprintName = "DouFM"
             ReferencedContainer = "container:DouFm.xcodeproj">
          </BuildableReference>
@@ -90,7 +80,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

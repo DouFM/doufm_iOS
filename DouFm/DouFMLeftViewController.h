@@ -11,10 +11,10 @@
 
 @interface DouFMLeftViewController : UIViewController <RESideMenuDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (copy, nonatomic) NSArray *playList;
 @property (strong, nonatomic) NSString *musicType;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-//- (NSString *)dogMyCats:(NSString *)cats;
+- (void)updatePlayList;
+
 @end

@@ -55,7 +55,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Contentbackground" translatesAutoresizingMaskIntoConstraints="NO" id="Ccu-He-U2X">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Ccu-He-U2X">
                                 <rect key="frame" x="0.0" y="65" width="320" height="444"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -197,24 +197,6 @@
             </objects>
             <point key="canvasLocation" x="348" y="-147"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="W7n-pB-Rg2">
-            <objects>
-                <viewController id="hwv-fl-cjU" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tKP-oJ-gev"/>
-                        <viewControllerLayoutGuide type="bottom" id="dRG-zh-xhY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DOQ-hw-iEW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="csO-oY-Qz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="825" y="128"/>
-        </scene>
         <!--View Controller - 使用说明-->
         <scene sceneID="tlM-eW-Rsy">
             <objects>
@@ -240,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOv-fy-oOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792" y="-572"/>
+            <point key="canvasLocation" x="764" y="-191"/>
         </scene>
         <!--DouFM Left View Controller-->
         <scene sceneID="PNe-yv-pLL">
@@ -306,7 +288,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Contentbackground" width="480" height="800"/>
+        <image name="Background" width="320" height="568"/>
         <image name="navigation_background" width="320" height="64"/>
         <image name="nextMusic" width="22" height="22"/>
         <image name="play" width="22" height="22"/>

@@ -14,34 +14,66 @@
 #import "DouFMCollectionCell.h"
 
 NSString *kCellID = @"cellID";
+NSString *kFileName = @"playlist.plist";
 
 @interface DouFMContentViewController()
-
 
 @end
 
 @implementation DouFMLeftViewController
 
+//返回存储路径
+- (NSString *)dataFilePath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectiory = [paths objectAtIndex:0];
+    NSString *fileName = [documentsDirectiory stringByAppendingPathComponent:kFileName];
+    return fileName;
+}
+
+//获取数据
+- (void)getPlayListFromFile
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]])
+    {
+        self.playList = [NSArray arrayWithContentsOfFile:[self dataFilePath]];
+    }
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     
-    _tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
-    _tableView.opaque = NO;
-    _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.backgroundView = nil;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.bounces = NO;
-    _tableView.scrollsToTop = NO;
+    [self updatePlayList];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleNotification:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)handleNotification:(NSNotification *)event
+{
+    if ([event.name isEqualToString:UIApplicationDidBecomeActiveNotification]) {
+        
+        [self getPlayListFromFile];
+        NSDate *lastUpdate = [[NSUserDefaults standardUserDefaults]objectForKey:@"lastUpdate"];
+        NSDate *now = [NSDate date];
+        NSTimeInterval interval = [now timeIntervalSinceDate:lastUpdate];
+        if (_playList == nil || lastUpdate == nil  || interval >= 2 * 24 * 60 * 60 )
+        {
+            [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"lastUpdate"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [self updatePlayList];
+        }
+    }
+}
+
+- (void)updatePlayList
 {
     [AppDelegate.engine fetchPlayListOnSucceded:^(NSMutableArray *listOfModelBaseObjects)
      {
          DLog(@"fetch items %@", listOfModelBaseObjects);
-         self.playList = [listOfModelBaseObjects copy];
+         self.playList = listOfModelBaseObjects;
+         [self.playList writeToFile:[self dataFilePath] atomically:YES];
+         
          PlayList *playList = [_playList objectAtIndex:0];
          
          [[NSUserDefaults standardUserDefaults]setObject:playList.key forKey:kMusicType];
@@ -55,64 +87,7 @@ NSString *kCellID = @"cellID";
      {
          DLog(@"error %@",engineError);
      }];
-    
-    [super viewDidAppear:animated];
 }
-#pragma mark -
-#pragma mark UITableView Datasource
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 40;
-//}
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return [self.playList count];
-//}
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *cellIdentifier = @"playListIdentiy";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//        cell.backgroundColor = [UIColor clearColor];
-//        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
-//        cell.textLabel.textColor = [UIColor whiteColor];
-//        cell.textLabel.highlightedTextColor = [UIColor lightGrayColor];
-//        cell.selectedBackgroundView = [[UIView alloc] init];
-//    }
-//    PlayList *item = [self.playList objectAtIndex:indexPath.row];
-//    cell.textLabel.text = item.name;
-//    //cell.detailTextLabel.text = item.music_list;
-//    return cell;
-//}
-
-//#pragma mark UITableView Delegate method
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    PlayList *playList = [_playList objectAtIndex:indexPath.row];
-//    if ([_musicType isEqualToString:playList.key]) {
-//        [self.sideMenuViewController hideMenuViewController];
-//        return;
-//    }
-//    
-//    [[NSUserDefaults standardUserDefaults]setObject:playList.key forKey:kMusicType];
-//    [[NSUserDefaults standardUserDefaults]setObject:playList.name forKey:kMusicTypeName];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
-//    
-//    self.musicType = playList.key;
-//    [self.sideMenuViewController hideMenuViewController];
-//
-//}
-
-
 
 #pragma mark -- UICollectionDataSourceDelegate
 
@@ -148,6 +123,12 @@ NSString *kCellID = @"cellID";
     
     self.musicType = playList.key;
     [self.sideMenuViewController hideMenuViewController];
+    
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
+}
 @end

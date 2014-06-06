@@ -754,7 +754,7 @@
   }];
   
   if (postLength >= 1)
-    [self.request setValue:[NSString stringWithFormat:@"%lu", postLength] forHTTPHeaderField:@"content-length"];
+    [self.request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)postLength] forHTTPHeaderField:@"content-length"];
   
   [body appendData: [[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:self.stringEncoding]];
   
@@ -764,7 +764,7 @@
     [self.request setValue:[NSString stringWithFormat:@"multipart/form-data; charset=%@; boundary=%@", charset, boundary] 
         forHTTPHeaderField:@"Content-Type"];
     
-    [self.request setValue:[NSString stringWithFormat:@"%ld", [body length]] forHTTPHeaderField:@"Content-Length"];
+    [self.request setValue:[NSString stringWithFormat:@"%ld", (unsigned long)[body length]] forHTTPHeaderField:@"Content-Length"];
   }
   
   return body;
@@ -945,7 +945,7 @@
       NSData *certData = [[NSData alloc] initWithContentsOfFile:self.clientCertificate];
       
 #warning method not implemented. Don't use client certicate authentication for now.
-      SecIdentityRef myIdentity;  // ???
+      SecIdentityRef myIdentity = NULL;  // ???
       
       SecCertificateRef myCert = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)certData);
       SecCertificateRef certArray[1] = { myCert };
@@ -1031,7 +1031,7 @@
     // do cache processing only if the request is a "GET" method
     NSString *lastModified = [httpHeaders objectForKey:@"Last-Modified"];
     NSString *eTag = [httpHeaders objectForKey:@"ETag"];
-    NSString *expiresOn = [httpHeaders objectForKey:@"Expires"];
+      NSString *expiresOn = nil;//[httpHeaders objectForKey:@"Expires"];
     
     NSString *contentType = [httpHeaders objectForKey:@"Content-Type"];
     // if contentType is image, 
@@ -1094,7 +1094,7 @@
       NSString *bytesText = [rangeString substringWithRange:NSMakeRange(6, [rangeString length] - 7)];
       self.startPosition = [bytesText integerValue];
       self.downloadedDataSize = self.startPosition;
-      DLog(@"Resuming at %ld bytes", self.startPosition);
+      DLog(@"Resuming at %ld bytes", (long)self.startPosition);
     }
   }
   

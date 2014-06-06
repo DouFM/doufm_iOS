@@ -161,7 +161,7 @@
 -(void) startRotation
 {
     //start Animation
-    self.layer.speed = .3;
+    self.layer.speed = 1.0;
     self.layer.beginTime = 0.0;
     CFTimeInterval pausedTime = [self.layer timeOffset];
     CFTimeInterval timeSincePause = [self.layer convertTime:CACurrentMediaTime() fromLayer:nil] - pausedTime;
@@ -184,23 +184,25 @@
 {
     //set ImgView
     //self.playStateView.image = [UIImage imageNamed:@"pause"];
-    self.userInteractionEnabled = NO;
-    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                        // self.playStateView.alpha = 1;
-                     }completion:^(BOOL finished){
-                         if (finished){
-                             //self.userInteractionEnabled = YES;
-                             [UIView animateWithDuration:1.0 animations:^{
-                                 //self.playStateView.alpha = 0;
-                                 //pause
-                                 CFTimeInterval pausedTime = [self.layer convertTime:CACurrentMediaTime() fromLayer:nil];
-                                 self.layer.speed = 0.0;
-                                 self.layer.timeOffset = pausedTime;
-                             }];
-                         }
-                     }
-     ];
+    //self.userInteractionEnabled = NO;
+    CFTimeInterval pausedTime = [self.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    self.layer.speed = 0.0;
+    self.layer.timeOffset = pausedTime;
+    
+//    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut
+//                     animations:^{
+//                        // self.playStateView.alpha = 1;
+//                     }completion:^(BOOL finished){
+//                         if (finished){
+//                             //self.userInteractionEnabled = YES;
+//                             [UIView animateWithDuration:1.0 animations:^{
+//                                 //self.playStateView.alpha = 0;
+//                                 //pause
+//                          
+//                             }];
+//                         }
+//                     }
+//     ];
 }
 
 -(void)play

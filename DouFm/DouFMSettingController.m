@@ -15,6 +15,7 @@ NSString *kTableCellID = @"kTableCellID";
 
 
 @property (strong, nonatomic) NSArray *options;
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -28,6 +29,10 @@ NSString *kTableCellID = @"kTableCellID";
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回"
 //                                                                           style:UIBarButtonItemStyleBordered
 //                                                                           target:self action:@selector(backToPrevious)];
+//    self.tableView.opaque = NO;
+//    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.bounces = NO;
     
     self.options = @[@"使用说明", @"关于我们", @"反馈意见"];
     
@@ -56,6 +61,7 @@ NSString *kTableCellID = @"kTableCellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableCellID];
 
     cell.textLabel.text = [_options objectAtIndex:indexPath.row];
+    
     return cell;
 }
 
@@ -79,16 +85,29 @@ NSString *kTableCellID = @"kTableCellID";
             break;
         case 2:
         {
-            NSString *emailTitle= @"DouFM iOS客户端反馈";
-            NSString *emailBody = [NSString stringWithFormat:@"iOS %@",[UIDevice currentDevice].systemVersion];
-            NSArray *toRecpents = [NSArray arrayWithObject:@"admin@doufm.info"];
-            
-            MFMailComposeViewController *emailVC = [[MFMailComposeViewController alloc]init];
-            emailVC.mailComposeDelegate = self;
-            [emailVC setSubject:emailTitle];
-            [emailVC setMessageBody:emailBody isHTML:NO];
-            [emailVC setToRecipients:toRecpents];
-            [self presentViewController:emailVC animated:YES completion:nil];
+            if ([MFMailComposeViewController canSendMail])
+            {
+                NSString *emailTitle= @"DouFM iOS客户端反馈";
+                NSString *emailBody = [NSString stringWithFormat:@"iOS %@",[UIDevice currentDevice].systemVersion];
+                NSArray *toRecpents = [NSArray arrayWithObject:@"admin@doufm.info"];
+                
+                MFMailComposeViewController *emailVC = [[MFMailComposeViewController alloc]init];
+                emailVC.mailComposeDelegate = self;
+                [emailVC setSubject:emailTitle];
+                [emailVC setMessageBody:emailBody isHTML:NO];
+                [emailVC setToRecipients:toRecpents];
+                [self presentViewController:emailVC animated:YES completion:nil];
+                
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                               message:@"你好像没在设置里设置好邮箱地址哎"
+                                                              delegate:self
+                                                     cancelButtonTitle:@"知道了"
+                                                     otherButtonTitles:nil];
+                [alert show];
+            }
             return;
         }
             break;

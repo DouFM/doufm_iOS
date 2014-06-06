@@ -213,7 +213,7 @@
 		8C37627F1940B80800A26087 /* UsageDescription.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UsageDescription.html; sourceTree = "<group>"; };
 		8C3762811940C12200A26087 /* AboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutUs.html; sourceTree = "<group>"; };
 		8C3762831940C2CB00A26087 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		8C9D83FF190E54EB0095D6D4 /* DouFm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouFm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C9D83FF190E54EB0095D6D4 /* DouFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D8402190E54EC0095D6D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C9D8404190E54EC0095D6D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8C9D8406190E54EC0095D6D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -434,6 +434,7 @@
 		8C9D83F6190E54EB0095D6D4 = {
 			isa = PBXGroup;
 			children = (
+				8C9D8400190E54EB0095D6D4 /* Products */,
 				8CB7C536193F62E500E9046C /* JingRound */,
 				8C177BAC193E24C10063489E /* FXBlurView */,
 				8C3690C9191B14CD00264891 /* SDWebImage */,
@@ -443,14 +444,13 @@
 				8C9D8408190E54EC0095D6D4 /* DouFm */,
 				8C9D8427190E54EC0095D6D4 /* DouFmTests */,
 				8C9D8401190E54EC0095D6D4 /* Frameworks */,
-				8C9D8400190E54EB0095D6D4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		8C9D8400190E54EB0095D6D4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C9D83FF190E54EB0095D6D4 /* DouFm.app */,
+				8C9D83FF190E54EB0095D6D4 /* DouFM.app */,
 				8C9D8420190E54EC0095D6D4 /* DouFmTests.xctest */,
 			);
 			name = Products;
@@ -603,7 +603,7 @@
 			);
 			name = DouFM;
 			productName = DouFm;
-			productReference = 8C9D83FF190E54EB0095D6D4 /* DouFm.app */;
+			productReference = 8C9D83FF190E54EB0095D6D4 /* DouFM.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8C9D841F190E54EC0095D6D4 /* DouFmTests */ = {
@@ -634,6 +634,7 @@
 				ORGANIZATIONNAME = jackie;
 				TargetAttributes = {
 					8C9D83FE190E54EB0095D6D4 = {
+						DevelopmentTeam = D8YA462WBM;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -818,6 +819,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -856,7 +858,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -877,10 +880,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DouFm/DouFm-Prefix.pch";
 				INFOPLIST_FILE = "DouFm/DouFm-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -891,10 +897,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DouFm/DouFm-Prefix.pch";
 				INFOPLIST_FILE = "DouFm/DouFm-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
