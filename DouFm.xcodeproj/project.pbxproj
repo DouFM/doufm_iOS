@@ -64,6 +64,7 @@
 		8C3762801940B80800A26087 /* UsageDescription.html in Resources */ = {isa = PBXBuildFile; fileRef = 8C37627F1940B80800A26087 /* UsageDescription.html */; };
 		8C3762821940C12300A26087 /* AboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = 8C3762811940C12200A26087 /* AboutUs.html */; };
 		8C3762841940C2CB00A26087 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3762831940C2CB00A26087 /* MessageUI.framework */; };
+		8C90733619553F82003EF688 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C90733519553F82003EF688 /* MBProgressHUD.m */; };
 		8C9D8403190E54EC0095D6D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D8402190E54EC0095D6D4 /* Foundation.framework */; };
 		8C9D8405190E54EC0095D6D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D8404190E54EC0095D6D4 /* CoreGraphics.framework */; };
 		8C9D8407190E54EC0095D6D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D8406190E54EC0095D6D4 /* UIKit.framework */; };
@@ -211,6 +212,8 @@
 		8C37627F1940B80800A26087 /* UsageDescription.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UsageDescription.html; sourceTree = "<group>"; };
 		8C3762811940C12200A26087 /* AboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutUs.html; sourceTree = "<group>"; };
 		8C3762831940C2CB00A26087 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		8C90733419553F82003EF688 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8C90733519553F82003EF688 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		8C9D83FF190E54EB0095D6D4 /* DouFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D8402190E54EC0095D6D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C9D8404190E54EC0095D6D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -427,9 +430,19 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		8C90733319553F70003EF688 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8C90733419553F82003EF688 /* MBProgressHUD.h */,
+				8C90733519553F82003EF688 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		8C9D83F6190E54EB0095D6D4 = {
 			isa = PBXGroup;
 			children = (
+				8C90733319553F70003EF688 /* MBProgressHUD */,
 				8C9D8400190E54EB0095D6D4 /* Products */,
 				8CB7C536193F62E500E9046C /* JingRound */,
 				8C177BAC193E24C10063489E /* FXBlurView */,
@@ -686,6 +699,7 @@
 				8C3690801917E4AB00264891 /* DOUAudioStreamer.m in Sources */,
 				8C3690751917E4AB00264891 /* DOUAudioAnalyzer.m in Sources */,
 				8C9D8447190E63970095D6D4 /* DouFMLeftViewController.m in Sources */,
+				8C90733619553F82003EF688 /* MBProgressHUD.m in Sources */,
 				8C9D8413190E54EC0095D6D4 /* AppDelegate.m in Sources */,
 				8C9D840F190E54EC0095D6D4 /* main.m in Sources */,
 				8C3690E9191B14CD00264891 /* SDImageCache.m in Sources */,

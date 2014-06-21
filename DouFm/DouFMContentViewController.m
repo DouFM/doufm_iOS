@@ -20,6 +20,7 @@
 #import "RESideMenu.h"
 #import "FXBlurView.h"
 #import "JingRoundView.h"
+#import "MBProgressHUD.h"
 
 extern NSString *remoteControlPlayButtonTapped;
 extern NSString *remoteControlPauseButtonTapped;
@@ -33,7 +34,7 @@ static void *kStatusKVOKey = &kStatusKVOKey;
 static void *kDurationKVOKey = &kDurationKVOKey;
 static void *kMusicKVOKey = &kMusicKVOKey;
 
-@interface DouFMContentViewController()<JingRoundViewDelegate>
+@interface DouFMContentViewController()<JingRoundViewDelegate,MBProgressHUDDelegate>
 
 @property (strong, nonatomic) DOUAudioStreamer *streamPlayer;
 @property (assign, nonatomic) NSUInteger currentTrackIndex;
@@ -41,10 +42,11 @@ static void *kMusicKVOKey = &kMusicKVOKey;
 
 @property (weak, nonatomic) IBOutlet FXBlurView *blurView;
 @property (weak, nonatomic) IBOutlet JingRoundView *roundView;
-
+@property (strong, nonatomic) MBProgressHUD *HUD;
 @end
 
 @implementation DouFMContentViewController
+
 
 - (void)_fetchSongItems
 {
@@ -259,6 +261,16 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     
     Reachability  *_reachability = [Reachability reachabilityWithHostname:kBaseURL];
     
+    if (![_reachability isReachableViaWiFi])
+    {
+        self.HUD = [[MBProgressHUD alloc]initWithView:self.view];
+        [self.view addSubview:_HUD];
+        _HUD.delegate = self;
+        _HUD.labelText = @"无可用网络";
+        [_HUD show:YES];
+        [_HUD hide:YES afterDelay:2.0];
+    }
+    
     _reachability.reachableBlock = ^(Reachability *reach)
     {
         //如果当前网络是通过校园网无线连接
@@ -274,8 +286,15 @@ static void *kMusicKVOKey = &kMusicKVOKey;
         else
         {
             //[self.roundView pause];
+//            self.HUD = [[MBProgressHUD alloc]initWithView:self.view];
+//            [self.view addSubview:_HUD];
+//            _HUD.delegate = self;
+//            _HUD.labelText = @"无可用网络";
+//            [_HUD show:YES];
+//            [_HUD hide:YES afterDelay:1.0];
+            
             [_streamPlayer pause];
-            [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+            [_playButton setBackgroundImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
             [[SDWebImageManager sharedManager] cancelAll];
             
         }
@@ -286,6 +305,14 @@ static void *kMusicKVOKey = &kMusicKVOKey;
         dispatch_async(dispatch_get_main_queue(), ^{
             
            // [self.roundView pause];
+            
+//            self.HUD = [[MBProgressHUD alloc]initWithView:self.view];
+//            [self.view addSubview:_HUD];
+//            _HUD.delegate = self;
+//            _HUD.labelText = @"无可用网络";
+//            [_HUD show:YES];
+//            [_HUD hide:YES afterDelay:1.0];
+            
             [_streamPlayer pause];
             [_playButton setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
             [[SDWebImageManager sharedManager] cancelAll];
@@ -294,6 +321,14 @@ static void *kMusicKVOKey = &kMusicKVOKey;
     };
     
     [_reachability startNotifier];
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [_HUD removeFromSuperview];
+    self.HUD = nil;
 }
 
 - (void)awakeFromNib
